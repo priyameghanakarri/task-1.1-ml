@@ -1,0 +1,61 @@
+merge sort
+#include<stdio.h>
+#include<stdlib.h>
+
+int a[8],b[8];
+
+void merge(int l,int mid,int r)
+    {
+    int k=0;
+    while(l<=mid && mid<=r)
+        {
+        if(a[l]<a[mid])
+            {
+            b[k++]=a[l++];
+            }
+        else
+            {
+            b[k++]=a[mid++];
+            }
+        }
+    for(l=l;l<=mid;l++)
+        {
+        b[k++]=a[l];
+
+        }
+    for(mid=mid;mid<=r;mid++)
+        {
+        b[k++]=a[mid];
+        }
+
+    }
+
+void mergeSort(int l,int r)
+        {
+        if(l<r)
+            {
+            int mid=(l+r)/2;
+            printf("mid1=%d \n",mid);
+            mergeSort(l,mid);
+            printf("mid2=%d \n",mid);
+            mergeSort(mid+1,r);
+            merge(l,mid,r);
+            }
+        }
+
+int main()
+{
+int i;
+srand(2500);
+for(i=0;i<8;i++)
+    {
+    a[i]=rand()%100;
+    }
+mergeSort(0,7);
+for(i=0;i<8;i++)
+    {
+    printf("%d ",b[i]);
+    }
+}
+
+bubble sort

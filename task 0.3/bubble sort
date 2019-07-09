@@ -1,0 +1,32 @@
+############ bubble sort ################
+#include<stdio.h>
+#include<stdlib.h>
+
+
+int main()
+{
+
+int a[100000],i,j,count=1,k,t,min,m;
+
+
+for(i=0;i<100000;i++)
+    {
+    a[i]=m%(1000000+(i*i));
+    }
+
+printf("\n\n");
+
+for(i=0;i<100000;i++)
+    {
+    for(j=0;j<100000-i;j++)
+        {
+        if(a[j]>a[j+1])
+            {
+            a[j]=a[j]+a[j+1];
+            a[j+1]=a[j]-a[j+1];
+            a[j]=a[j]-a[j+1];
+            }
+        }
+    }
+
+/* print a here*/

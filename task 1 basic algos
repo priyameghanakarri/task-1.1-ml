@@ -1,0 +1,200 @@
+1(a) #include<bits/stdc++.h>
+      using namespace std;
+      int main()
+{
+     long long int num,val,maximum,minimum,i,a,b;
+     string input;
+     val=0;
+     cin>>num; cin>>input;
+     long long int res1[num],res2[num];
+     maximum=pow(2,num)-1;
+     minimum=pow(2,num-1);
+
+     int base= 1; 
+     int len = input.length(); 
+     for (int i = len - 1; i >= 0; i--) 
+	 { 
+        if (input[i] == '1') 
+            val+= base; 
+        base = base * 2; 
+     } 
+     cout<<val<<endl;
+
+     if(val+1<=maximum && val-1>=minimum)
+     {
+       a=val-1; b=val+1;
+       cout<<a<<" "<<b<<endl;
+
+       for(i=0; a>0; i++)    
+        {    
+          res1[i]=a%2;    
+          a= a/2;  
+        }     
+
+        for(i=i-1 ;i>=0 ;i--)    {    cout<<res1[i];    }  cout<<" ";  
+
+        for(i=0; b>0; i++)    
+        {    
+          res2[i]=b%2;    
+          b= b/2;  
+        }    
+
+        for(i=i-1 ;i>=0 ;i--)    {    cout<<res2[i];    }  cout<<endl; 
+      
+         
+   }
+
+   else if(val==maximum || val==minimum)
+   {
+       cout<<"-1"<<endl;
+   }
+   
+   }
+   
+   
+   
+   
+1(b)    #include<bits/stdc++.h>
+      using namespace std;
+
+      int main(void)
+     {
+     long long int count = 0, n;
+     cin  >> n;
+     if (n==1)
+     {
+        cout << 0;
+        return 0;
+     }
+
+     string str, sub1, sub2;
+     cin >> str;
+    
+     while(n)
+     {
+        sub1 = str.substr(0,n/2);
+        sub2 = str.substr((n/2),n/2);
+        //cout << sub1 << endl << sub2 << endl;
+
+        if (sub1==sub2)
+        //cout << "eys";
+        {
+            count++;
+            if(n/2<=1)
+            {
+                cout << count;
+                return 0;
+            }       
+            str.assign(sub1);
+            n/=2;
+        }
+        else
+        {
+            cout << count;
+            return 0;
+        }
+     }
+}
+
+
+
+1(c) #include<bits/stdc++.h>
+      using namespace std;
+      #define ll long long int
+      int check[4][6];
+      int main(void)
+     {
+     int arr[6]={7,8,9,10,16,43};
+     unordered_multiset<int> ms;
+     for(int i=0;i<6;i++)
+     {
+        ms.insert(arr[i]);    
+     }
+     int ans[6];
+     for(int i=0;i<4;i++){
+        int temp;
+        printf("%d %d",i,i+1);
+        fflush(stdout);
+        scanf("%d",&temp);
+        fflush(stdout);
+        for(int j=0;j<6;j++)
+        {
+            if(temp%arr[j]==0 && ms.count(temp/arr[j])==1 ){
+                check[i][j]=1;
+            }
+        }
+     }
+     int temp=1;
+     for(int i=0;i<3;i++)
+     {
+        for(int j=0;j<6;j++)
+        {
+            if(check[i][j]==1 && check[i][j]==check[i+1][j]){
+                ans[temp++]=arr[j];
+            }
+        }
+     }
+     for(int i=0;i<6;i++)
+     {
+        if(check[0][i]==1 && ans[1]!=arr[i]){
+            ans[0]=arr[i];
+        }
+     }
+     for(int i=0;i<6;i++)
+     {
+        if(check[3][i]==1 && ans[3]!=arr[i]){
+            ans[4]=arr[i];
+        }
+     }
+     for(int i=0;i<6;i++)
+     {
+        ms.insert(ans[i]);
+     }
+     for(auto i : ms){
+        if(ms.count(i)==1){
+            ans[5]=i;
+        }
+     }
+     for(int i=0;i<6;i++)
+     {
+        printf("%d ",ans[i]);
+        fflush(stdout);
+     }
+     printf("\n");
+     fflush(stdout);
+}
+
+
+
+1(d) #include<bits/stdc++.h>
+      using namespace std;
+      #define ll long long int
+      int contest[110],eat[110];
+      int main(void)
+      {
+     ll n,r,x,y;
+     cin>>n>>r>>x>>y;
+      int temp=r;
+      for(int i=0;i<n;i++){
+        cin>>contest[i];
+     }
+     for(int i=0;i<n;i++){
+        cin>>eat[i];
+     }
+     for(int i=0;i<n;i++){
+        if(contest[i]){
+            if(eat[i]){
+                temp+=x;
+            }
+            else{
+                temp-=y;
+            }
+        }
+     }
+     if(temp==r){
+        cout<<"no change"<<endl;
+        return 0;
+     }
+     (temp>r)?(cout<<"promoted"):(cout<<"demoted");
+     cout<<endl;
+}
